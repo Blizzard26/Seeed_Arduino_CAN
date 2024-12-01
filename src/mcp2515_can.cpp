@@ -1402,7 +1402,9 @@ byte mcp2515_can::checkReceive(void) {
 *********************************************************************************************************/
 byte mcp2515_can::checkError(uint8_t* err_ptr) {
     byte eflg = mcp2515_readRegister(MCP_EFLG);
-    mcp2515_modifyRegister(MCP_EFLG, 0xFF, 0);
+    if (eflg) {
+        mcp2515_modifyRegister(MCP_EFLG, 0xFF, 0);
+    }
     if (err_ptr) {
         *err_ptr = eflg;
     }
