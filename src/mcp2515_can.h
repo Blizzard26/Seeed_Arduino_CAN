@@ -102,6 +102,8 @@ public:
     virtual bool mcpDigitalWrite(const byte pin, const byte mode);                                                                                      // write HIGH or LOW to RX0BF/RX1BF
     virtual byte mcpDigitalRead(const byte pin);
 
+    byte readRegister(const byte address);
+
 private:
     void mcp2515_reset(void); // reset mcp2515
 

@@ -342,6 +342,10 @@ byte mcp2515_can::getMode() {
     return mcp2515_readRegister(MCP_CANSTAT) & MODE_MASK;
 }
 
+byte mcp2515_can::readRegister(const byte address) {
+    return mcp2515_readRegister(address);
+}
+
 /*********************************************************************************************************
 ** Function name:           mcp2515_setCANCTRL_Mode
 ** Descriptions:            set control mode
