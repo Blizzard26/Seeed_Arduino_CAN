@@ -46,6 +46,7 @@
     THE SOFTWARE.
 */
 #define DEBUG_EN 0
+#define DEBUG_DELAY 0
 #include "mcp2515_can.h"
 
 #define spi_readwrite      pSPI->transfer
@@ -785,14 +786,14 @@ byte mcp2515_can::mcp2515_init(const byte canSpeed, const byte clock) {
     if (res > 0) {
         #if DEBUG_EN
         SERIAL_PORT_MONITOR.println(F("Enter setting mode fail"));
-        #else
+        #elif DEBUG_DELAY
         delay(10);
         #endif
         return res;
     }
     #if DEBUG_EN
     SERIAL_PORT_MONITOR.println(F("Enter setting mode success "));
-    #else
+    #elif DEBUG_DELAY
     delay(10);
     #endif
 
@@ -800,14 +801,14 @@ byte mcp2515_can::mcp2515_init(const byte canSpeed, const byte clock) {
     if (mcp2515_configRate(canSpeed, clock)) {
         #if DEBUG_EN
         SERIAL_PORT_MONITOR.println(F("set rate fall!!"));
-        #else
+        #elif DEBUG_DELAY
         delay(10);
         #endif
         return res;
     }
     #if DEBUG_EN
     SERIAL_PORT_MONITOR.println(F("set rate success!!"));
-    #else
+    #elif DEBUG_DELAY
     delay(10);
     #endif
 
@@ -839,7 +840,7 @@ byte mcp2515_can::mcp2515_init(const byte canSpeed, const byte clock) {
         if (res) {
             #if DEBUG_EN
             SERIAL_PORT_MONITOR.println(F("Enter Normal Mode Fail!!"));
-            #else
+            #elif DEBUG_DELAY
             delay(10);
             #endif
             return res;
@@ -848,7 +849,7 @@ byte mcp2515_can::mcp2515_init(const byte canSpeed, const byte clock) {
 
         #if DEBUG_EN
         SERIAL_PORT_MONITOR.println(F("Enter Normal Mode Success!!"));
-        #else
+        #elif DEBUG_DELAY
         delay(10);
         #endif
 
@@ -1083,14 +1084,14 @@ byte mcp2515_can::init_Mask(byte num, byte ext, unsigned long ulData) {
     byte res = MCP2515_OK;
     #if DEBUG_EN
     SERIAL_PORT_MONITOR.println(F("Begin to set Mask!!"));
-    #else
+    #elif DEBUG_DELAY
     delay(10);
     #endif
     res = mcp2515_setCANCTRL_Mode(MODE_CONFIG);
     if (res > 0) {
         #if DEBUG_EN
         SERIAL_PORT_MONITOR.println(F("Enter setting mode fall"));
-        #else
+        #elif DEBUG_DELAY
         delay(10);
         #endif
         return res;
@@ -1109,14 +1110,14 @@ byte mcp2515_can::init_Mask(byte num, byte ext, unsigned long ulData) {
     if (res > 0) {
         #if DEBUG_EN
         SERIAL_PORT_MONITOR.println(F("Enter normal mode fall"));
-        #else
+        #elif DEBUG_DELAY
         delay(10);
         #endif
         return res;
     }
     #if DEBUG_EN
     SERIAL_PORT_MONITOR.println(F("set Mask success!!"));
-    #else
+    #elif DEBUG_DELAY
     delay(10);
     #endif
     return res;
@@ -1130,14 +1131,14 @@ byte mcp2515_can::init_Filt(byte num, byte ext, unsigned long ulData) {
     byte res = MCP2515_OK;
     #if DEBUG_EN
     SERIAL_PORT_MONITOR.println(F("Begin to set Filter!!"));
-    #else
+    #elif DEBUG_DELAY
     delay(10);
     #endif
     res = mcp2515_setCANCTRL_Mode(MODE_CONFIG);
     if (res > 0) {
         #if DEBUG_EN
         SERIAL_PORT_MONITOR.println(F("Enter setting mode fall"));
-        #else
+        #elif DEBUG_DELAY
         delay(10);
         #endif
         return res;
@@ -1176,14 +1177,14 @@ byte mcp2515_can::init_Filt(byte num, byte ext, unsigned long ulData) {
     if (res > 0) {
         #if DEBUG_EN
         SERIAL_PORT_MONITOR.println(F("Enter normal mode fall\r\nSet filter fail!!"));
-        #else
+        #elif DEBUG_DELAY
         delay(10);
         #endif
         return res;
     }
     #if DEBUG_EN
     SERIAL_PORT_MONITOR.println(F("set Filter success!!"));
-    #else
+    #elif DEBUG_DELAY
     delay(10);
     #endif
 
@@ -1463,7 +1464,7 @@ bool mcp2515_can::mcpPinMode(const byte pin, const byte mode) {
             if (res > 0) {
                 #if DEBUG_EN
                 SERIAL_PORT_MONITOR.println(F("Entering Configuration Mode Failure..."));
-                #else
+                #elif DEBUG_DELAY
                 delay(10);
                 #endif
                 return false;
@@ -1485,7 +1486,7 @@ bool mcp2515_can::mcpPinMode(const byte pin, const byte mode) {
             if (res) {
                 #if DEBUG_EN
                 SERIAL_PORT_MONITOR.println(F("`Setting ID Mode Failure..."));
-                #else
+                #elif DEBUG_DELAY
                 delay(10);
                 #endif
                 return false;
@@ -1497,7 +1498,7 @@ bool mcp2515_can::mcpPinMode(const byte pin, const byte mode) {
             if (res > 0) {
                 #if DEBUG_EN
                 SERIAL_PORT_MONITOR.println(F("Entering Configuration Mode Failure..."));
-                #else
+                #elif DEBUG_DELAY
                 delay(10);
                 #endif
                 return false;
@@ -1519,7 +1520,7 @@ bool mcp2515_can::mcpPinMode(const byte pin, const byte mode) {
             if (res) {
                 #if DEBUG_EN
                 SERIAL_PORT_MONITOR.println(F("`Setting ID Mode Failure..."));
-                #else
+                #elif DEBUG_DELAY
                 delay(10);
                 #endif
                 return false;
@@ -1531,7 +1532,7 @@ bool mcp2515_can::mcpPinMode(const byte pin, const byte mode) {
             if (res > 0) {
                 #if DEBUG_EN
                 SERIAL_PORT_MONITOR.println(F("Entering Configuration Mode Failure..."));
-                #else
+                #elif DEBUG_DELAY
                 delay(10);
                 #endif
                 return false;
@@ -1553,7 +1554,7 @@ bool mcp2515_can::mcpPinMode(const byte pin, const byte mode) {
             if (res) {
                 #if DEBUG_EN
                 SERIAL_PORT_MONITOR.println(F("`Setting ID Mode Failure..."));
-                #else
+                #elif DEBUG_DELAY
                 delay(10);
                 #endif
                 return false;
